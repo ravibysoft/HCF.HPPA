@@ -1,0 +1,6 @@
+@HCF.HPPA_HostAddress = http://localhost:5095
+
+GET {{HCF.HPPA_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
