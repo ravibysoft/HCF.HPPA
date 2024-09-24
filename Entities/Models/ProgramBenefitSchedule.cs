@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Models;
 
-[PrimaryKey(nameof(ProgramCode), nameof(MBSItemCode), nameof(DateOn),nameof(DateOff))]
 public class ProgramBenefitSchedule
 {
+    [Key]
+    public Int64 Id { get; set; }
     public string ProgramCode { get; set; } = string.Empty;
     public string MBSItemCode { get; set; } = string.Empty;
     public decimal MBSScheduleFees { get; set; }

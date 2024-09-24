@@ -21,11 +21,10 @@ namespace HCF.HPPA.Controllers
             return Ok(await _service.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetByProgramCodeAndMBSItemCode")]
-        public async Task<ActionResult<ProgramBenefitSchedule>> Get(string programCode , string mbsItemCode)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProgramBenefitSchedule>> GetById(Int64 id)
         {
-            var schedule = await _service.GetByProgramCodeAndMBSItemCodeAsync(programCode, mbsItemCode);
+            var schedule = await _service.GetByIdAsync(id);
             if (schedule == null) return NotFound();
             return Ok(schedule);
         }
@@ -37,21 +36,18 @@ namespace HCF.HPPA.Controllers
             return CreatedAtAction(nameof(Get), new { programCode = createdSchedule.ProgramCode , mbsItemCode = createdSchedule.MBSItemCode }, createdSchedule);
         }
 
-        [HttpPut]
-        [Route("UpdateSchedule")]
-        public async Task<ActionResult> Put(string programCode, string mbsItemCode, [FromBody] ProgramBenefitSchedule schedule)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(Int64 id, [FromBody] ProgramBenefitSchedule schedule)
         {
-            if (programCode != schedule.ProgramCode) return BadRequest();
-            await _service.UpdateAsync(programCode, mbsItemCode,schedule);
+            if (id != schedule.Id) return BadRequest();
+            await _service.UpdateAsync(schedule);
             return NoContent();
         }
 
-        [HttpDelete]
-        [Route("DeleteSchedule")]
-        public async Task<ActionResult> Delete(string programCode, string mbsItemCode)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Int64 id)
         {
-            var deleted = await _service.DeleteAsync(programCode,mbsItemCode);
-            if (!deleted) return NotFound();
+            await _service.DeleteAsync(id);
             return NoContent();
         }
     }
