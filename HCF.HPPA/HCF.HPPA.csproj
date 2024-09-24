@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\WordDocs\Program.docx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\WordDocs\Program.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DS.Documents.Word" Version="7.2.2" />
     <PackageReference Include="DS.Documents.Word.Layout" Version="7.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
