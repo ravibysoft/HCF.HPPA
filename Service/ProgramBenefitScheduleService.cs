@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using HCF.HPPA.Entities.Models;
 using Repository.Interface;
 using Service.Interface;
 
@@ -22,4 +23,13 @@ public class ProgramBenefitScheduleService : IProgramBenefitScheduleService
     public Task<ProgramBenefitSchedule> UpdateAsync(ProgramBenefitSchedule schedule) => _repository.UpdateAsync(schedule);
 
     public Task<bool> DeleteAsync(Int64 id) => _repository.DeleteAsync(id);
+    public Task<PagedResult<ProgramBenefitSchedule>> GetPagedSchedulesAsync(
+       string? search = null,
+       string? sortBy = null,
+       bool ascending = true,
+       int pageNumber = 1,
+       int pageSize = 10)
+    {
+        return _repository.GetPagedAsync(search, sortBy, ascending, pageNumber, pageSize);
+    }
 }

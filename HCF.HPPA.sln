@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCF.HPPA", "HCF.HPPA\HCF.HPPA.csproj", "{41138017-1DED-42EE-B887-E8C9F6CD4EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCF.HPPA.API", "HCF.HPPA\HCF.HPPA.API.csproj", "{41138017-1DED-42EE-B887-E8C9F6CD4EF2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{5B07C396-8415-4C32-A670-8418595D504C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCF.HPPA.Entities", "Entities\HCF.HPPA.Entities.csproj", "{5B07C396-8415-4C32-A670-8418595D504C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{3DE784F2-6D83-47A5-83F6-349ABF5C7D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCF.HPPA.Service", "Service\HCF.HPPA.Service.csproj", "{3DE784F2-6D83-47A5-83F6-349ABF5C7D93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{597354DA-4413-4B6B-899D-DCE91754DA6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCF.HPPA.Repository", "Repository\HCF.HPPA.Repository.csproj", "{597354DA-4413-4B6B-899D-DCE91754DA6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

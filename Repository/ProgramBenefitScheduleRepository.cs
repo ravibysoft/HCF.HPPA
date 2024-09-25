@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using HCF.HPPA.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interface;
 
@@ -47,5 +48,45 @@ public class ProgramBenefitScheduleRepository : IProgramBenefitScheduleRepositor
         _context.programBenefitSchedule.Remove(schedule);
         await _context.SaveChangesAsync();
         return true;
+    }
+    public async Task<PagedResult<ProgramBenefitSchedule>> GetPagedAsync(
+       string? search = null,
+       string? sortBy = null,
+       bool ascending = true,
+       int pageNumber = 1,
+       int pageSize = 10)
+    {
+        var query = _context.programBenefitSchedule.AsQueryable();
+
+        // Search
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            query = query.Where(p => p.ProgramCode.Contains(search) ||
+                                      p.MBSItemCode.Contains(search) ||
+                                      p.Comments.Contains(search));
+        }
+
+        // Sort
+        if (!string.IsNullOrWhiteSpace(sortBy))
+        {
+            query = ascending ?
+                query.OrderBy(p => EF.Property<object>(p, sortBy)) :
+                query.OrderByDescending(p => EF.Property<object>(p, sortBy));
+        }
+
+        // Pagination
+        var totalRecords = await query.CountAsync();
+        var items = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return new PagedResult<ProgramBenefitSchedule>
+        {
+            TotalRecords = totalRecords,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            Items = items
+        };
     }
 }

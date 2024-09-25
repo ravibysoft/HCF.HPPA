@@ -16,4 +16,5 @@ public class ProgramBenefitSchedule
     public string ChangedBy { get; set; } = string.Empty;
     public DateTime ChangedDateTime { get; set; }
     public string Comments { get; set; } = string.Empty;
+    public string Status { get; set; } = string.Empty;
 }

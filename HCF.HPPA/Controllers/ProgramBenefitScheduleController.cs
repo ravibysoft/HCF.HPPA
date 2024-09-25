@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace HCF.HPPA.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/program-benefit-schedule")]
     [ApiController]
     public class ProgramBenefitScheduleController : ControllerBase
     {
@@ -39,7 +39,7 @@ namespace HCF.HPPA.Controllers
         public async Task<ActionResult<ProgramBenefitSchedule>> Post([FromBody] ProgramBenefitSchedule schedule)
         {
             var createdSchedule = await _service.AddAsync(schedule);
-            return CreatedAtAction(nameof(Get), new { programCode = createdSchedule.ProgramCode , mbsItemCode = createdSchedule.MBSItemCode }, createdSchedule);
+            return CreatedAtAction(nameof(Get), new { programCode = createdSchedule.ProgramCode, mbsItemCode = createdSchedule.MBSItemCode }, createdSchedule);
         }
 
         [HttpPut("{id}")]
@@ -58,7 +58,20 @@ namespace HCF.HPPA.Controllers
         }
 
         [HttpGet]
-        [Route("genrateDoc")]
+        [Route("get-pbs")]
+        public async Task<IActionResult> GetProgramBenefitSchedules(
+        string? search = null,
+        string? sortBy = null,
+        bool ascending = true,
+        int pageNumber = 1,
+        int pageSize = 10)
+        {
+            var result = await _service.GetPagedSchedulesAsync(search, sortBy, ascending, pageNumber, pageSize);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("genrate-doc")]
         public async Task<ActionResult> GenrateDoc()
         {
             var schedulelist = await _service.GetAllAsync();
