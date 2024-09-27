@@ -31,12 +31,11 @@ public class ProgramBenefitScheduleRepository : IProgramBenefitScheduleRepositor
         return schedule;
     }
 
-    public async Task<ProgramBenefitSchedule> UpdateAsync(ProgramBenefitSchedule schedule)
+    public async void UpdateAsync(ProgramBenefitSchedule schedule)
     {
         schedule.ChangedDateTime = DateTime.Now;
         _context.Entry(schedule).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-        return schedule;
     }
 
     public async Task<bool> DeleteAsync(Int64 id)

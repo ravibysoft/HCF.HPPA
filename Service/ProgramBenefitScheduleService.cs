@@ -20,7 +20,7 @@ public class ProgramBenefitScheduleService : IProgramBenefitScheduleService
 
     public Task<ProgramBenefitSchedule> AddAsync(ProgramBenefitSchedule schedule) => _repository.AddAsync(schedule);
 
-    public Task<ProgramBenefitSchedule> UpdateAsync(ProgramBenefitSchedule schedule) => _repository.UpdateAsync(schedule);
+    public void UpdateAsync(ProgramBenefitSchedule schedule) => _repository.UpdateAsync(schedule);
 
     public Task<bool> DeleteAsync(Int64 id) => _repository.DeleteAsync(id);
     public Task<PagedResult<ProgramBenefitSchedule>> GetPagedSchedulesAsync(

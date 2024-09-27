@@ -46,7 +46,7 @@ namespace HCF.HPPA.Controllers
         public async Task<ActionResult> Put(Int64 id, [FromBody] ProgramBenefitSchedule schedule)
         {
             if (id != schedule.Id) return BadRequest();
-            await _service.UpdateAsync(schedule);
+            _service.UpdateAsync(schedule);
             return NoContent();
         }
 
