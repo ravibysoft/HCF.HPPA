@@ -4,3 +4,55 @@ GET {{HCF.HPPA_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+### Get all program benefit schedules
+GET {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule
+Accept: application/json
+
+### Get program benefit schedule by ID
+GET {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/1
+Accept: application/json
+
+### Create a new program benefit schedule
+POST {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule
+Content-Type: application/json
+
+{
+  "programCode": "P001",
+  "MBSItemCode": "MBS1234",
+  "description": "Sample Schedule Description",
+  "effectiveDate": "2024-01-01",
+  "expiryDate": "2024-12-31"
+}
+
+### Update a program benefit schedule
+PUT {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/1
+Content-Type: application/json
+
+{
+  "id": 3,
+  "programCode": "P001",
+  "MBSItemCode": "MBS1234",
+  "description": "Updated Schedule Description",
+  "effectiveDate": "2024-01-01",
+  "expiryDate": "2025-12-31"
+}
+
+### Delete a program benefit schedule
+DELETE {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/1
+
+### Get paged program benefit schedules with default parameters
+GET {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/get-pbs
+Accept: application/json
+
+### Get paged program benefit schedules with search
+GET {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/get-pbs?search=49318&sortBy=ProgramCode&ascending=true&pageNumber=1&pageSize=10
+Accept: application/json
+
+### Get paged program benefit schedules sorted in descending order
+GET {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/get-pbs?sortBy=ProgramCode&ascending=false&pageNumber=1&pageSize=5
+Accept: application/json
+
+### Get paged program benefit schedules with pagination
+GET {{HCF.HPPA_HostAddress}}/api/program-benefit-schedule/get-pbs?pageNumber=2&pageSize=10
+Accept: application/json
