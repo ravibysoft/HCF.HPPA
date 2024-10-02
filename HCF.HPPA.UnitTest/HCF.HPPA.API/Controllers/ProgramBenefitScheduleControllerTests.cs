@@ -24,7 +24,8 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
             // Arrange
             var schedules = new List<ProgramBenefitSchedule>
         {
-            new ProgramBenefitSchedule { Id = 1, ProgramCode = "P1", MBSItemCode = "M1" }
+               new ProgramBenefitSchedule { Id = 1, ProgramCode = "NGJ", MBSItemCode = "49318", MBSScheduleFees = 49093, ProgramMedicalFees = 49094,DateOn= DateTime.Now,DateOff=DateTime.Today.AddMonths(1),ChangedBy= "dino",Comments= "Comments6",Status= "Publish"},
+                  new ProgramBenefitSchedule { Id = 2, ProgramCode = "NGJ" , MBSItemCode = "00000",MBSScheduleFees =10000,ProgramMedicalFees =20000,DateOn= DateTime.Now,DateOff=DateTime.Today.AddMonths(1),ChangedBy= "xyz",Comments= "Comments2",Status= "Publish"}
         };
             _mockService.Setup(s => s.GetAllAsync()).ReturnsAsync(schedules);
 
@@ -34,7 +35,7 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
             var returnSchedules = Assert.IsType<List<ProgramBenefitSchedule>>(okResult.Value);
-            Assert.Equal(1, returnSchedules?.Count);
+            Assert.Equal(2, returnSchedules?.Count);
         }
 
         [Fact]
@@ -56,7 +57,8 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
         {
             // Arrange
             Int64 id = 1;
-            var schedule = new ProgramBenefitSchedule { Id = id, ProgramCode = "P1", MBSItemCode = "M1" };
+            var schedule = new ProgramBenefitSchedule { Id = 1, ProgramCode = "NGJ", MBSItemCode = "49318", MBSScheduleFees = 49093, ProgramMedicalFees = 49094, DateOn = DateTime.Now, DateOff = DateTime.Today.AddMonths(1), ChangedBy = "dino", Comments = "Comments6", Status = "Publish" };
+
             _mockService.Setup(s => s.GetByIdAsync(id)).ReturnsAsync(schedule);
 
             // Act
@@ -72,7 +74,7 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
         public async Task Post_CreatesSchedule_ReturnsCreatedResult()
         {
             // Arrange
-            var schedule = new ProgramBenefitSchedule { Id = 1, ProgramCode = "P1", MBSItemCode = "M1" };
+            var schedule = new ProgramBenefitSchedule { ProgramCode = "NGJ", MBSItemCode = "49318", MBSScheduleFees = 49093, ProgramMedicalFees = 49094, DateOn = DateTime.Now, DateOff = DateTime.Today.AddMonths(1), ChangedBy = "dino", Comments = "Comments6", Status = "Publish" };
             _mockService.Setup(s => s.AddAsync(schedule)).ReturnsAsync(schedule);
 
             // Act
@@ -81,7 +83,7 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
             // Assert
             var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
             var returnSchedule = Assert.IsType<ProgramBenefitSchedule>(createdResult.Value);
-            Assert.Equal(schedule.Id, returnSchedule.Id);
+            Assert.Equal(schedule.ProgramCode, returnSchedule.ProgramCode);
         }
 
         [Fact]
@@ -89,7 +91,7 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
         {
             // Arrange
             Int64 id = 1;
-            var schedule = new ProgramBenefitSchedule { Id = id, ProgramCode = "P1", MBSItemCode = "M1" };
+            var schedule = new ProgramBenefitSchedule { Id = id, ProgramCode = "NGJ", MBSItemCode = "49318", MBSScheduleFees = 49093, ProgramMedicalFees = 49094, DateOn = DateTime.Now, DateOff = DateTime.Today.AddMonths(1), ChangedBy = "dino", Comments = "Comments1", Status = "Publish" };
             _mockService.Setup(s => s.UpdateAsync(schedule));
 
             // Act
@@ -124,7 +126,8 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
                 PageSize = 10,
                 Items = new List<ProgramBenefitSchedule>
                  {
-                    new ProgramBenefitSchedule { Id = 1, ProgramCode = "P1", MBSItemCode = "M1" }
+                      new ProgramBenefitSchedule { Id = 1, ProgramCode = "NGJ", MBSItemCode = "49318", MBSScheduleFees = 49093, ProgramMedicalFees = 49094,DateOn= DateTime.Now,DateOff=DateTime.Today.AddMonths(1),ChangedBy= "dino",Comments= "Comments6",Status= "Publish"},
+                      new ProgramBenefitSchedule { Id = 2, ProgramCode = "NGJ" , MBSItemCode = "00000",MBSScheduleFees =10000,ProgramMedicalFees =20000,DateOn= DateTime.Now,DateOff=DateTime.Today.AddMonths(1),ChangedBy= "xyz",Comments= "Comments2",Status= "Publish"}
                 }
             };
             _mockService.Setup(s => s.GetPagedSchedulesAsync(null, null, true, 1, 10)).ReturnsAsync(schedules);
@@ -135,7 +138,7 @@ namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Controllers
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             var returnSchedules = Assert.IsType<PagedResult<ProgramBenefitSchedule>>(okResult.Value);
-            Assert.Equal(returnSchedules.TotalRecords ,schedules.TotalRecords);
+            Assert.Equal(returnSchedules.TotalRecords, schedules.TotalRecords);
             Assert.Equal(returnSchedules.PageNumber, schedules.PageNumber);
             Assert.Equal(returnSchedules.PageSize, schedules.PageSize);
             Assert.Equal(returnSchedules.Items, schedules.Items);
