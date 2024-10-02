@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\HCF.HPPA.Entities.csproj" />
+    <ProjectReference Include="..\HCF.HPPA.Entities\HCF.HPPA.Entities.csproj" />
   </ItemGroup>
 
 </Project>

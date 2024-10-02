@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\HCF.HPPA.Entities.csproj" />
-    <ProjectReference Include="..\Repository\HCF.HPPA.Repository.csproj" />
+    <ProjectReference Include="..\HCF.HPPA.Entities\HCF.HPPA.Entities.csproj" />
+    <ProjectReference Include="..\HCF.HPPA.Repository\HCF.HPPA.Repository.csproj" />
   </ItemGroup>
 
 </Project>
