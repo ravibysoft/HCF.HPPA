@@ -1,0 +1,18 @@
+﻿using HCF.HPPA.Common.Models;
+
+namespace HCF.HPPA.Domain.Services;
+
+public interface IProgramBenefitScheduleService
+{
+    Task<IEnumerable<ProgramBenefitSchedule>> GetAllAsync();
+    Task<ProgramBenefitSchedule> GetByIdAsync(long id);
+    Task<ProgramBenefitSchedule> AddAsync(ProgramBenefitSchedule schedule);
+    Task<bool> UpdateAsync(ProgramBenefitSchedule schedule);
+    Task<bool> DeleteAsync(long id);
+    Task<PagedResult<ProgramBenefitSchedule>> GetPagedSchedulesAsync(
+       string? search = null,
+       string? sortBy = null,
+       bool ascending = true,
+       int pageNumber = 1,
+       int pageSize = 10);
+}
