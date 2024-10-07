@@ -1,10 +1,9 @@
 ﻿using HCF.HPPA.Common.Models;
-using HCF.HPPA.Domain.Models;
 using HCF.HPPA.Domain.Services;
 using HCF.HPPA.Repository.Repositories;
 using Moq;
 
-namespace HCF.HPPA.UnitTest.HCF.HPPA.API.Service
+namespace HCF.HPPA.UnitTest.Domain.Service
 {
     public class ProgramBenefitScheduleServiceTests
     {
